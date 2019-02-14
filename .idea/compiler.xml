@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cache" />
+        <module name="dao" />
+        <module name="dsp" />
+        <module name="po" />
+        <module name="service" />
+        <module name="task" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="cache" options="-sourcepath C:\work\web\cache/src/main/java" />
+      <module name="dao" options="-sourcepath C:\work\web\dao/src/main/java" />
+      <module name="dsp" options="-sourcepath C:\work\web\dsp/src/main/java" />
+      <module name="po" options="-sourcepath C:\work\web\po/src/main/java" />
+      <module name="service" options="-sourcepath C:\work\web\service/src/main/java" />
+      <module name="task" options="-sourcepath C:\work\web\task/src/main/java" />
+    </option>
+  </component>
+</project>
