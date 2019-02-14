@@ -26,6 +26,7 @@ public class UserController {
         try {
             userService.loadUserByUsername("admin");
             logger.info("load user ");
+            logger.info("测试");
         } catch (Exception e) {
             logger.error(e.getLocalizedMessage(), e);
         }
