@@ -45,11 +45,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http
+
 //				将login.jsp定为登陆页面，只处理/login这个请求
-                .formLogin().loginPage("/login.jsp").and().formLogin().loginProcessingUrl("/login")
+        http.formLogin().loginPage("/login.jsp").and().formLogin().loginProcessingUrl("/login")
 //				如果登陆成功就跳转到/home这个地址，如果失败就跳转到/?error=1
-                .and().formLogin().defaultSuccessUrl("/home").and().formLogin().failureUrl("/?error=1");
+                .and().formLogin().defaultSuccessUrl("/home").and().formLogin().failureUrl("/error");
 //		这里配置的是登出的请求
         http.logout().logoutUrl("/logout")
 //				登陆成功后跳转的地址，以及删除的cookie名称
