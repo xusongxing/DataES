@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="off" monitorInterval="30">
+    <properties>
+        <property name="INFO_LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{user.username}
+            %X{req.requestURI} %X{req.queryString} %l - %msg%n
+        </property>
+        <property name="ERROR_LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{user.username}
+            %X{req.requestURI} %X{req.queryString} %l - %msg%n
+        </property>
+        <property name="WARN_LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{user.username}
+            %X{req.requestURI} %X{req.queryString} %l - %msg%n
+        </property>
+        <property name="CONSOLE_LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{user.username}
+            %X{req.requestURI} %X{req.queryString} %l - %msg%n
+        </property>
+        <property name="LOG_PATH">D:\project\log</property>
+    </properties>
+    <appenders>
+        <!--这个输出控制台的配置-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="all" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${CONSOLE_LOG_PATTERN}"/>
+        </Console>
+
+        <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用-->
+        <File name="File" fileName="${LOG_PATH}/console.log" append="false">
+            <PatternLayout pattern="${FILE_LOG_PATTERN}"/>
+        </File>
+
+        <!--这个会打印出INFO级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档,
+        当前为Linux压缩方式，但是我开发用window，所以我选择zip-->
+        <RollingFile name="RollingInfo" fileName="${LOG_PATH}/info.log"
+                     filePattern="${LOG_PATH}/info.%d{yyyyMMdd}.%i.log.zip">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${INFO_LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+        <!--这个会打印出ERROR级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="RollingError" fileName="${LOG_PATH}/error.log"
+                     filePattern="${LOG_PATH}/error.%d{yyyyMMdd}.%i.log.zip">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${ERROR_LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+        <!--这个会打印出WARN级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+        <RollingFile name="RollingWarn" fileName="${LOG_PATH}/warn.log"
+                     filePattern="${LOG_PATH}/warn.%d{yyyyMMdd}.%i.log.zip">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${WARN_LOG_PATTERN}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </appenders>
+    <loggers>
+        <root level="All" includeLocation="true">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingInfo"/>
+            <appender-ref ref="RollingError"/>
+            <appender-ref ref="RollingWarn"/>
+        </root>
+    </loggers>
+
+</configuration>
