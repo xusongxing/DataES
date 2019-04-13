@@ -18,8 +18,8 @@ public class DspConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Bean(name = "schedulerFactoryBean")
-    public SchedulerFactoryBean schedulerFactoryBean() {
-        return new SchedulerFactoryBean();
-    }
+//    @Bean(name = "schedulerFactoryBean")
+//    public SchedulerFactoryBean schedulerFactoryBean() {
+//        return new SchedulerFactoryBean();
+//    }
 }
