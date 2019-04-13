@@ -2,9 +2,8 @@ package cn.xsx.web.dsp.conf;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * 负责管理基本配置信息

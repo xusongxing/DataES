@@ -9,16 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.header.HeaderWriter;
-import org.springframework.security.web.header.HeaderWriterFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 负责安全相关的配置处理
